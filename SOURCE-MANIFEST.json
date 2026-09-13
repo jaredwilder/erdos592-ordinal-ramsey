@@ -1,0 +1,70 @@
+{
+  "source_repo": "jaredwilder/erdos-campaign-archive",
+  "source_commit": "2f4c8e421137c53fd5d8414cabb3f543a3a12f55",
+  "source_prefix": "campaigns/erdos592-close-2026-09-05",
+  "files": [
+    {
+      "source_path": "campaigns/erdos592-close-2026-09-05/Erdos592Audit.lean",
+      "destination": "research/Erdos592Audit.lean",
+      "bytes": 1584,
+      "source_blob": "48cfc10f7a76c04a831c4ff303987aace311eeb2",
+      "sha256": "d0c82fd8381c978104b7e0a87ccef1d08395603c7bc41d34c642d209f3c5901f"
+    },
+    {
+      "source_path": "campaigns/erdos592-close-2026-09-05/Erdos592Frontier.lean",
+      "destination": "research/Erdos592Frontier.lean",
+      "bytes": 20863,
+      "source_blob": "e5192843f25408733934ea23c093e791cd2af1e8",
+      "sha256": "570af0bc354c6aa774e452d5847ebc2d32a15fe6873cc00afb5fe8624e5ee93c"
+    },
+    {
+      "source_path": "campaigns/erdos592-close-2026-09-05/Erdos592Reduction.lean",
+      "destination": "research/Erdos592Reduction.lean",
+      "bytes": 5278,
+      "source_blob": "134bfdb0a1546a9c94b91133d71a37c662661042",
+      "sha256": "40fc0a01cf8b00c5c8e80bda3d970ba44685a29ae32cc41b324c404fdd01ec14"
+    },
+    {
+      "source_path": "campaigns/erdos592-close-2026-09-05/receipts/axioms-audit.log",
+      "destination": "research/receipts/axioms-audit.log",
+      "bytes": 2633,
+      "source_blob": "eaab0219419676de741148b6527c1afd3173792f",
+      "sha256": "aba227c5cc654989aece6f604c1ef9d327944a768c3904368c54f592e3a39420"
+    },
+    {
+      "source_path": "campaigns/erdos592-close-2026-09-05/receipts/build-frontier.log",
+      "destination": "research/receipts/build-frontier.log",
+      "bytes": 1986,
+      "source_blob": "71efcdbda417fb4d356f7be1f743729d73cbbc5b",
+      "sha256": "8c2fc2b80d6e0682103eae3c08a3ab89e48ebf09bdfae7beace7fb253b3cf222"
+    },
+    {
+      "source_path": "campaigns/erdos592-close-2026-09-05/receipts/build-reduction.log",
+      "destination": "research/receipts/build-reduction.log",
+      "bytes": 0,
+      "source_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "campaigns/erdos592-close-2026-09-05/receipts/campaign.json",
+      "destination": "research/receipts/campaign.json",
+      "bytes": 12423,
+      "source_blob": "58a7018c64bb13ee195ac9d36541545445f4086a",
+      "sha256": "dd6dc46d6690ace9b7644169175b96b6a485eb43bc53aabaa7c45c7fa4648b94"
+    },
+    {
+      "source_path": "campaigns/erdos592-close-2026-09-05/receipts/erdosproblems-592-snapshot-2026-09-05.txt",
+      "destination": "research/receipts/erdosproblems-592-snapshot-2026-09-05.txt",
+      "bytes": 2510,
+      "source_blob": "2883eb8a97cb818716b90ad5401930d6dc86b0f6",
+      "sha256": "70419f6a55f82d5fffcae90a10ffcbd4d99c3a90bd905f7c9e0be8fb97acada2"
+    },
+    {
+      "source_path": "LICENSE",
+      "destination": "LICENSE",
+      "bytes": 11358,
+      "source_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ]
+}

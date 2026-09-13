@@ -1,0 +1,137 @@
+{
+  "schema": "oracle.campaign.v1",
+  "campaign": "erdos592-close-2026-09-05",
+  "target": "erdos:592",
+  "targetSource": "erdosproblems.com community database (teorth/erdosproblems)",
+  "prize": "$1000",
+  "tags": ["set theory", "ramsey theory"],
+  "statementUrl": "https://www.erdosproblems.com/592",
+  "statement": "Determine which countable ordinals beta have the property that, if alpha = omega^beta, then in any red/blue colouring of the edges of K_alpha there is either a red K_alpha or a blue K_3.",
+
+  "verdict": "NOT_CLOSED",
+  "verdictNote": "Erdos 592 is NOT resolved by this campaign. Openness is the source's marking, not ours; nothing here changes it. What is banked is (a) a kernel-checked formalisation of the frontier -- a proven-exhaustive, proven-exclusive five-way classification of beta that pins the open region to a single class -- (b) a kernel-checked identification of the least open instance, (c) a kernel-checked reduction confining all remaining uncertainty to that class, (d) a correctness warning against the obvious wrong answer, and (e) two reusable sorry-free lemmas. No new mathematics about the open case was produced.",
+
+  "priorEstateWork": {
+    "found": true,
+    "value": "NONE_USABLE",
+    "artifacts": [
+      "oracle/evidence/encirclement-nuclear/erdos_592_terminal.json",
+      "oracle/evidence/encirclement-nuclear/v4-enriched/erdos_592_terminal.json",
+      "oracle/evidence/rapid-fire/escalator-erdos-592-20260730T122707Z.json (+8 sibling rapid-fire files)"
+    ],
+    "assessment": "The 2026-08-10 'encirclement' artifact for erdos:592 is about elliptic divisibility sequences, isogeny chains and CM curves -- a DIFFERENT PROBLEM entirely. It carries 20 debate rounds and a 'BEST SHOT' execution plan for a target it never read. The v4-enriched rerun does carry the correct enriched_statement but its output proposes brute-forcing finite complete graphs against an INFINITE ordinal Ramsey relation, and its Lean snippets are `sorry`. The rapid-fire escalator runs recorded known=[] at every tier. Net prior estate progress on erdos:592 before this campaign: zero. This is recorded because a plausible-looking artifact that answers the wrong question is worse than an empty directory."
+  },
+
+  "literature": {
+    "snapshotFile": "receipts/erdosproblems-592-snapshot-2026-09-05.txt",
+    "snapshotSha256": "66b029789b6f69e03b0fa396d6e9e5f15bf45ee188ccd461353cd414d52e47cd",
+    "retrieved": "2026-09-05",
+    "citation": "T. F. Bloom, Erdos Problem #592, https://www.erdosproblems.com/592, accessed 2026-09-05",
+    "pageLastEdited": "2026-01-23",
+    "facts": [
+      {"who": "Specker [Sp57]", "claim": "P(2) holds", "sign": "positive"},
+      {"who": "Specker [Sp57]", "claim": "P(n) fails for 3 <= n < omega", "sign": "negative"},
+      {"who": "Chang [Ch72]", "claim": "P(omega) holds", "sign": "positive"},
+      {"who": "Galvin-Larson [GaLa74]", "claim": "if beta >= 3 and P(beta) then beta is additively indecomposable, so beta = omega^gamma", "sign": "necessary condition"},
+      {"who": "Galvin-Larson [GaLa74]", "claim": "CONJECTURE: every beta >= 3 of the form omega^gamma has the property", "sign": "REFUTED (see below)"},
+      {"who": "Schipperus [Sc10]", "claim": "P(omega^gamma) holds if gamma is a sum of one or two indecomposables", "sign": "positive"},
+      {"who": "Schipperus [Sc10]", "claim": "P(omega^gamma) FAILS if gamma is a sum of four or more indecomposables", "sign": "negative -- this refutes the Galvin-Larson conjecture"},
+      {"who": "-", "claim": "gamma a sum of exactly three indecomposables", "sign": "OPEN"}
+    ],
+    "adjacentOpenQuestion": "Larson-Schipperus: for gamma a sum of two indecomposables, omega^(omega^gamma) -> (omega^(omega^gamma), 5)^2 FAILS while the 3 version holds. The blue-clique size 4 is a separate open gap in the same family; it is NOT Erdos 592 (which fixes the blue clique at 3) and was not attacked here."
+  },
+
+  "findings": [
+    {
+      "id": "F1",
+      "kind": "FRONTIER_PINNED",
+      "status": "PROVED",
+      "claim": "The five classes ClassA..ClassE partition the ordinals: frontier_exhaustive (every beta is in at least one) and frontier_exclusive (no beta is in two). ClassD -- beta = omega^gamma with indecCount gamma = 3 -- is the unique class the literature leaves undecided.",
+      "why": "erdosproblems.com says the open case 'appears to be' gamma a sum of three indecomposables. This turns an appearance into a checked property of the classification: there is no sixth region and no overlap, so the open region really is exactly one class.",
+      "lean": ["Erdos592.frontier_exhaustive", "Erdos592.frontier_exclusive"]
+    },
+    {
+      "id": "F2",
+      "kind": "LEAST_OPEN_INSTANCE",
+      "status": "PROVED",
+      "claim": "omega^3 is the LEAST member of the open class: ClassD (omega^3) holds, and every beta in ClassD satisfies omega^3 <= beta. Hence the single smallest open instance of Erdos 592 is: omega^(omega^3) -> (omega^(omega^3), 3)^2 ?",
+      "why": "3 = 1+1+1 has exactly three indecomposable summands, and 0,1,2 have counts 0,1,2. The problem's smallest undecided concrete instance was not stated anywhere in the corpus; it is now a theorem.",
+      "lean": ["Erdos592.omega_pow_three_open", "Erdos592.three_le_of_indecCount_three", "Erdos592.omega_pow_three_least", "Erdos592.ClassD_least"]
+    },
+    {
+      "id": "F3",
+      "kind": "CORRECTNESS_WARNING",
+      "status": "PROVED (conditional on the Schipperus negative verdict, carried as an explicit hypothesis)",
+      "claim": "The obvious fill-in for `answer(sorry)` in google-deepmind/formal-conjectures FormalConjectures/ErdosProblems/592.lean -- namely the Galvin-Larson condition `beta < 3 or beta = omega^gamma` -- is a REFUTED answer. omega^4 lies in that set and in ClassE, which Schipperus showed fails.",
+      "why": "The file's own TODO reads 'add condition by Galvin and Larson'. Galvin and Larson proved a NECESSARY condition and separately CONJECTURED it sufficient; Schipperus refuted the conjecture. A formaliser following the TODO literally would commit a false answer term.",
+      "lean": ["Erdos592.galvin_larson_conjecture_false", "Erdos592.galvin_larson_conjecture_false'", "Erdos592.omega_pow_four_mem_ClassE"]
+    },
+    {
+      "id": "F4",
+      "kind": "REDUCTION",
+      "status": "PROVED (conditional on the four literature verdicts, carried as explicit hypotheses)",
+      "claim": "Given the four settled regions, P beta <-> (ClassA beta or ClassC beta or (ClassD beta and P beta)). All remaining content of Erdos 592 is the restriction of P to ClassD. Further, IF P is constant on ClassD (huniform -- NOT known) then the answer set is exactly one of two explicit closed forms; without huniform, Erdos 592 may have no closed-form answer of this shape at all.",
+      "why": "Separates 'what is left to prove' from 'what is already known', and flags that even the EXISTENCE of a clean answer to 592 needs an unproved uniformity hypothesis.",
+      "lean": ["Erdos592.erdos592_reduces_to_ClassD", "Erdos592.erdos592_answer_dichotomy"]
+    },
+    {
+      "id": "F5",
+      "kind": "ATTACK_RULED_OUT",
+      "status": "PROVED (conditional on Specker's P(2), Specker's not-P(3), Chang's P(omega), carried as explicit hypotheses)",
+      "claim": "{beta | P beta} is neither upward nor downward closed. So no monotonicity/transfer argument in either direction can carry Schipperus' positive region (count <= 2) or his negative region (count >= 4) into the open region (count = 3).",
+      "why": "ClassD sits between a positive and a negative region, which invites a sandwich argument. There is no order-theoretic sandwich to be had: the counterexamples live at beta = 2, 3, omega. Any attack on ClassD must be specific to the count-3 shape.",
+      "lean": ["Erdos592.no_monotone_bridge"]
+    },
+    {
+      "id": "F6",
+      "kind": "INSTANCE_PROVED",
+      "status": "PROVED",
+      "claim": "P 0 holds: omega^0 = 1 and a single vertex is already a red K_1.",
+      "why": "The only member of the answer set provable outright. As far as this campaign could determine, no instance of the Erdos 590/591/592 family is sorry-free anywhere in the Lean ecosystem; every theorem in the formal-conjectures files 590.lean, 591.lean, 592.lean is `sorry`.",
+      "lean": ["Erdos592.P_zero"]
+    },
+    {
+      "id": "F7",
+      "kind": "REUSABLE_INFRASTRUCTURE",
+      "status": "PROVED",
+      "claim": "(i) blue_neighborhood_isClique: with no blue K_3, the blue neighbourhood of every vertex is a red clique. (ii) typeLT_eq_omega0_of_infinite: an infinite subset of a set of order type omega has order type omega. (iii) ramsey_card_zero and OrdinalCardinalRamsey.mono_card.",
+      "why": "(i) is the engine step of every positive proof in the Specker/Chang/Schipperus family; (ii) is exactly the bridge that turns Ramsey's theorem into the beta = 1 instance. Both are stated against the formal-conjectures definition verbatim, so they drop straight into 590.lean / 591.lean / 592.lean.",
+      "lean": ["Erdos592.blue_neighborhood_isClique", "Erdos592.typeLT_eq_omega0_of_infinite", "Erdos592.ramsey_card_zero", "Erdos592.OrdinalCardinalRamsey.mono_card"]
+    }
+  ],
+
+  "unproved": [
+    {"claim": "P 1 (omega -> (omega,3)^2, i.e. Ramsey's theorem for pairs in this formulation)", "status": "UNPROVED", "note": "Attempted and deliberately not completed. The two supporting lemmas (F7 i, ii) ARE proved; what remains is the greedy construction in the case where every blue degree is finite, plus an order-isomorphism transfer between (omega : Ordinal.{u}).ToType and a copy of the naturals in universe u. Folklore mathematics, non-trivial Lean; not claimed."},
+    {"claim": "P 2 (Specker), not-P n for 3<=n<omega (Specker), P omega (Chang), Galvin-Larson necessity, Schipperus positive and negative", "status": "UNPROVED HERE", "note": "Carried as explicit named hypotheses everywhere they are used. This campaign proves NONE of them and asserts none of them; they are literature attributions only."},
+    {"claim": "Anything about ClassD (the open case)", "status": "UNPROVED", "note": "No progress. The classification says where the problem is, not what the answer is."}
+  ],
+
+  "artifacts": [
+    {"path": "Erdos592Frontier.lean", "sha256": "570af0bc354c6aa774e452d5847ebc2d32a15fe6873cc00afb5fe8624e5ee93c", "build": "EXIT=0", "note": "definitions + all unconditional results"},
+    {"path": "Erdos592Reduction.lean", "sha256": "40fc0a01cf8b00c5c8e80bda3d970ba44685a29ae32cc41b324c404fdd01ec14", "build": "EXIT=0", "note": "results conditional on named literature hypotheses"},
+    {"path": "Erdos592Audit.lean", "sha256": "d437daba742d2c97b02f8ba52e91c7d1e25dd45e205ff2032a1a66932b41ca46", "build": "EXIT=0", "note": "#print axioms over every banked result"},
+    {"path": "receipts/axioms-audit.log", "sha256": "aba227c5cc654989aece6f604c1ef9d327944a768c3904368c54f592e3a39420"},
+    {"path": "receipts/build-frontier.log", "sha256": "8c2fc2b80d6e0682103eae3c08a3ab89e48ebf09bdfae7beace7fb253b3cf222"},
+    {"path": "receipts/build-reduction.log", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "note": "empty: clean compile, no diagnostics"},
+    {"path": "receipts/erdosproblems-592-snapshot-2026-09-05.txt", "sha256": "66b029789b6f69e03b0fa396d6e9e5f15bf45ee188ccd461353cd414d52e47cd"}
+  ],
+
+  "axiomAudit": {
+    "receipt": "receipts/axioms-audit.log",
+    "checked": 28,
+    "allowedAxioms": ["propext", "Classical.choice", "Quot.sound"],
+    "sorryAxFound": 0,
+    "result": "PASS -- every one of the 28 banked results depends on exactly [propext, Classical.choice, Quot.sound]. The three occurrences of the string 'sorry' in the .lean sources are all inside comments quoting the formal-conjectures `answer(sorry)` term.",
+    "reproduce": "scp the three .lean files to the Lean box, then: LEAN_PATH=$(cd /root/formalizer/proofs && lake env printenv LEAN_PATH):<build> lean Erdos592Frontier.lean && ... Erdos592Reduction.lean && ... Erdos592Audit.lean"
+  },
+
+  "compute": {
+    "leanBox": "root@51.158.234.15",
+    "leanToolchain": "leanprover/lean4:v4.31.0-rc1",
+    "mathlibCommit": "919544d4309104b3f19724b0e6e48c701d27948f",
+    "mathlibRoot": "/root/formalizer/proofs",
+    "workDir": "/root/e592",
+    "policy": "nice -n 19, taskset -c 0,1, no existing jobs killed; box load average ~38 throughout",
+    "localHeavyCompute": "none"
+  }
+}
