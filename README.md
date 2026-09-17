@@ -1,53 +1,46 @@
-# Erdős #592: the ordinal Ramsey frontier
+# Erdős #592 — ordinal Ramsey frontier
 
-Which countable ordinals `beta` satisfy
-`omega^beta -> (omega^beta,3)^2`? In a red/blue edge coloring, this asks for
-either a red clique of the specified order type or a blue triangle.
+Which countable ordinals `β` satisfy
 
-This repository gives Jared Wilder's ordinal framework, conditional
-reductions and Lean audit a focused home.
+\[
+\omega^\beta\rightarrow(\omega^\beta,3)^2?
+\]
 
-## Start here
+Equivalently: in every red/blue coloring of pairs from `ω^β`, must there be either a red copy of `ω^β` or a blue triangle?
 
-| File | Purpose |
+This repository formalizes the ordinal classification framework and reduces the remaining case using explicit literature hypotheses.
+
+## Lean structure
+
+[`research/Erdos592Frontier.lean`](research/Erdos592Frontier.lean) defines five ordinal classes, proves that they partition the relevant exponents, and places named instances in those classes.
+
+[`research/Erdos592Reduction.lean`](research/Erdos592Reduction.lean) imports the known literature verdicts as explicit hypotheses and reduces the unresolved frontier to the class with three indecomposable summands.
+
+Under those dated literature inputs, the least remaining instance is
+
+\[
+\beta=\omega^3.
+\]
+
+The package proves the `β=0` Ramsey instance directly; the five external Ramsey verdicts are not reproved in Lean here.
+
+## Files
+
+| File | Role |
 |---|---|
-| [Frontier](research/Erdos592Frontier.lean) | Defines the partition relation and five ordinal classes; proves the classes form a partition and places named instances |
-| [Reduction](research/Erdos592Reduction.lean) | Reduces the remaining question using explicit literature hypotheses |
-| [Audit](research/Erdos592Audit.lean) | Declaration dependency checks |
-| [Campaign receipt](research/receipts/campaign.json) | Exact scope, literature attributions, environment and open obligations |
-| [Build and axiom logs](research/receipts/) | Historical verification evidence and dated problem snapshot |
+| [`Erdos592Frontier.lean`](research/Erdos592Frontier.lean) | Partition of ordinal cases and named instances |
+| [`Erdos592Reduction.lean`](research/Erdos592Reduction.lean) | Reduction using explicit literature hypotheses |
+| [`Erdos592Audit.lean`](research/Erdos592Audit.lean) | Declaration/dependency audit |
+| [`receipts/campaign.json`](research/receipts/campaign.json) | Toolchain and literature snapshot |
 
-## Formal scope
-
-The Lean framework proves the ordinal partition and supporting facts,
-including the `beta=0` Ramsey instance. It does **not** prove the five
-literature verdicts about the Ramsey relation. Those enter the reduction as
-explicit assumptions or documentation.
-
-Under the dated literature record, the class with three indecomposable
-summands is the remaining frontier; `beta=omega^3` is its least instance.
-The package does not solve that instance or the full classification.
-The campaign records an audit of 28 declarations with the listed standard
-axioms. No fresh Lean compilation was run during this promotion.
-
-## Reproduce and trace
+## Verification
 
 ```sh
 python verification/verify_source.py
 ```
 
-The source-byte check is independent of Lean compilation. The original
-environment is pinned in [campaign.json](research/receipts/campaign.json):
-Lean `leanprover/lean4:v4.31.0-rc1`, Mathlib commit
-`919544d4309104b3f19724b0e6e48c701d27948f`.
-Compile Frontier, then Reduction, then Audit with the resulting module
-directory on `LEAN_PATH` inside that Mathlib environment.
+The historical environment is pinned in the campaign receipt: Lean `v4.31.0-rc1`, Mathlib commit `919544d4309104b3f19724b0e6e48c701d27948f`.
 
-All eight research files are exact copies from the
-[campaign archive](https://github.com/jaredwilder/erdos-campaign-archive/tree/main/campaigns/erdos592-close-2026-09-05).
-[SOURCE-MANIFEST.json](SOURCE-MANIFEST.json) pins the source commit, paths,
-Git blobs, byte counts and SHA-256 hashes. This is the preferred problem-level
-entry; dated literature snapshots and original archive links remain provenance.
+The formal framework and reduction are complete at their stated hypotheses; the `β=ω^3` frontier and the full classification remain unresolved in this repository.
 
-Author: Jared Wilder. Source campaign: 2026-09-05. Focused release: 2026-09-13.
-License: Apache-2.0, inherited from the public source.
+Author: Jared Wilder. License: Apache-2.0.
